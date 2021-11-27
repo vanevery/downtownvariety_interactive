@@ -16,8 +16,10 @@ var http = require('https');
 // Security options - key and certificate
 var fs = require('fs');
 var options = {
-	key: fs.readFileSync('star_itp_io.key'),
-	cert: fs.readFileSync('star_itp_io.pem')
+	// key: fs.readFileSync('star_itp_io.key'),
+	// cert: fs.readFileSync('star_itp_io.pem')
+	key: fs.readFileSync('./certs/key.pem'),
+	cert: fs.readFileSync('./certs/cert.pem')
   };
   
 // We pass in the Express object and the options object
