@@ -1,6 +1,5 @@
 // 11/29/2021: YG
-// This is logic code for viewer's page
-// Will gradually migrate all scene logics to scenes.js
+// Currently it is just a copy of sketch.js. Will update this after the viewer's code is stablizhed.
 
 var socket;
 var bg = 0;

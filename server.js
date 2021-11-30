@@ -79,9 +79,15 @@ io.sockets.on('connection',
 			io.emit('chatmessage', data);
 			//socket.broadcast.emit('chatmessage', data);
 		});
+
+		socket.on('sceneIdx', function(data) {
+			io.emit('sceneIdx', data);
+		});
 		
 		socket.on('disconnect', function() {
 			console.log("Client has disconnected " + socket.id);
 		});
 	}
 );
+
+console.log("Server running at port 443.");

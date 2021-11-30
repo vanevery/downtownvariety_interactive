@@ -1,4 +1,4 @@
-
+// scene logic code
 
 let enter = {
     reset: function () {
