@@ -2,27 +2,17 @@
 
 let enter = {
     reset: function () {
-
+        this.fillc = 0;
     },
     run: function () {
         background(bg, bga);
-        fill(fillc);
+        fill(this.fillc);
         noStroke();
         for (const u in users) {
             fill(users[u].r, users[u].g, users[u].b);
             ellipse(users[u].x, users[u].y, users[u].s, users[u].s);
         }
-        fillc--;
-
-        if (audiostarted) {
-            //console.log(mic.getLevel());
-            levels[li] = mic.getLevel();
-            if (li < num - 1) {
-                li++;
-            } else {
-                li = 0;
-            }
-        }
+        this.fillc--;
     }
 }
 
@@ -42,20 +32,36 @@ let coffee = {
         ellipse(mouseX, mouseY, 20, 20);
     }
 }
+
 let postcrash = {
     reset: function () {
-
+        this.whiteCircleOpacity = random(100, 255);
     },
     run: function () {
+        background(0);
+        fill(255, this.whiteCircleOpacity);
+        ellipse(mouseX, mouseY, 20, 20);
     }
 }
+
 let club = {
     reset: function () {
 
     },
     run: function () {
+        background(bg, bga);
+    },
+    blink: function () {
+        console.log("blink");
+        bg = 128;
+        bga = 128;
+        setTimeout(function () {
+            bg = 0;
+            bga = 20;
+        }, 20);
     }
 }
+
 let climax = {
     reset: function () {
 
