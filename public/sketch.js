@@ -3,27 +3,27 @@
 // Will gradually migrate all scene logics to scenes.js
 
 var socket;
-var bg = 0;
+var bg = 255;
 var bga = 1;
-var pos = { x: -20, y: -20 };
-
-var size = 5;
+var r = 255, g = 255, b = 255;
+var size = 10;
 
 var users = {};
 
-var r = 255, g = 255, b = 255;
-
 // scene control
 let sceneIdx = 0; //0: Entering the Livestream  1:Making Coffee  2:Post Crash  3:The Club   4:Climax
+
+let isViewer = true;
 
 function setup() {
 
   r = random(0, 255);
   g = random(0, 255);
   b = random(0, 255);
-  //c = createCapture(AUDIO);
 
   let cnv = createCanvas(windowWidth, windowHeight);
+  cnv.id('cnv');
+  cnv.parent("vidContainer");
 
   socket = io.connect();
 
@@ -46,6 +46,8 @@ function setup() {
 
   // top of show, reset all scenes
   for (let scene of scenes) scene.reset();
+
+  noStroke();
 }
 
 function draw() {
@@ -54,8 +56,6 @@ function draw() {
   scenes[sceneIdx].run();
 
 }
-
-
 
 
 function mouseMoved() {

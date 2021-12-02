@@ -1,7 +1,26 @@
 html, body {
   margin: 0;
   padding: 0;
+  background-color: black;
 }
 canvas {
   display: block;
+}
+.container {
+  margin: 0 auto;
+  position: relative;
+}
+#vid {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#cnv {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color:rgba(0,0,0,0);
 }
