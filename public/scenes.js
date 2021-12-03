@@ -59,6 +59,7 @@ let postcrash = {
             fill(255, this.whiteCircleOpacity);
             ellipse(mouseX, mouseY, 20, 20);
         } else {
+            background(0, 30);
             for (const u in users) {
                 let whiteCircleOpacity = (users[u].r + users[u].g + users[u].b)/3;
                 fill(255, whiteCircleOpacity);
