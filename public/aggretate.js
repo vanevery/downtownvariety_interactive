@@ -1,6 +1,8 @@
 // 11/29/2021: YG
 // This is logic code for aggrate's page
 
+var TESTING = false;
+
 var socket;
 var bg = 255;
 var bga = 1;
@@ -70,6 +72,7 @@ function mousePressed() {
 
 // temporary key control to swtich scenes for testing
 function keyPressed() {
+  if (TESTING) {
   console.log(key);
   switch (key) {
     case "0":
@@ -88,4 +91,5 @@ function keyPressed() {
       sceneIdx = 4;
       break;
   }
+}
 }
