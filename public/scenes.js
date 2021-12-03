@@ -9,6 +9,10 @@ let enter = {
         if (isViewer) {
             fill(r, g, b);
             ellipse(mouseX, mouseY, size, size);
+            for (const u in users) {
+                fill(users[u].r, users[u].g, users[u].b);
+                ellipse(users[u].x, users[u].y, users[u].s, users[u].s);
+            }
         } else {
             for (const u in users) {
                 fill(users[u].r, users[u].g, users[u].b);
