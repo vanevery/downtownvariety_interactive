@@ -42,7 +42,7 @@ var io = require('socket.io')(httpServer, {
   }
 });
 
-var users = [];
+var users = {};
 
 var sceneIdx = 0;
 
@@ -54,10 +54,11 @@ io.sockets.on('connection',
 	
 		console.log("We have a new client: " + socket.id);
 
-		users.push(socket);
+		users[socket.id] = socket;
 
 		socket.emit('sceneIdx', sceneIdx);
 
+		/*
 		var usernames = [];
 		for (var i = 0; i < users.length; i++) {
 			usernames.push(users[i].username);	
@@ -73,6 +74,7 @@ io.sockets.on('connection',
 			}
 			io.emit('users',usernames);
 		});
+		*/
 
 		socket.on('blink', function(data) {
 			io.emit('blink', data);
@@ -83,6 +85,7 @@ io.sockets.on('connection',
 		});
 		
 		// When this user emits, client side: socket.emit('otherevent',some data);
+		/*
 		socket.on('chatmessage', function(data) {
 			// Data comes in as whatever was sent, including objects
 			console.log("Received: 'chatmessage' " + data);
@@ -93,6 +96,7 @@ io.sockets.on('connection',
 			io.emit('chatmessage', data);
 			//socket.broadcast.emit('chatmessage', data);
 		});
+		*/
 
 		socket.on('sceneIdx', function(data) {
 			sceneIdx = data;
@@ -100,9 +104,14 @@ io.sockets.on('connection',
 		});
 		
 		socket.on('disconnect', function() {
+			delete users[socket.id];
 			console.log("Client has disconnected " + socket.id);
 		});
 	}
 );
 
 console.log("Server running at port 8443.");
+
+setInterval(function() { 
+	console.log(Object.keys(users).length); 
+}, 5000);
