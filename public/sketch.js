@@ -2,6 +2,8 @@
 // This is logic code for viewer's page
 // Will gradually migrate all scene logics to scenes.js
 
+var TESTING = false;
+
 var socket;
 var bg = 255;
 var bga = 1;
@@ -57,11 +59,22 @@ function draw() {
 
 }
 
-
+var mouseWait = false;
+var timesPerSecond = 5;
 function mouseMoved() {
   // console.log("mousemoved");
-  var dataToSend = { s: size, x: mouseX, y: mouseY, id: socket.id, r: r, g: g, b: b };
-  socket.emit('mouse', dataToSend);
+	if (!mouseWait) {
+
+  		var dataToSend = { s: size, x: mouseX, y: mouseY, id: socket.id, r: r, g: g, b: b };
+  		socket.emit('mouse', dataToSend);
+
+        	// stop any further events
+        	mouseWait = true;
+        	// after a fraction of a second, allow events again
+        	setTimeout(function () {
+            		mouseWait = false;
+        	}, 1000 / timesPerSecond);
+    } 
 }
 
 function mousePressed() {
@@ -71,6 +84,7 @@ function mousePressed() {
 
 // temporary key control to swtich scenes for testing
 function keyPressed() {
+if (TESTING) {
   console.log(key);
   switch (key) {
     case "0":
@@ -89,4 +103,5 @@ function keyPressed() {
       sceneIdx = 4;
       break;
   }
+}
 }

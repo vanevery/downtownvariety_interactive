@@ -95,7 +95,7 @@ let climax = {
             background(0, 30);
             for (const u in users) {
                 fill(255, 150);
-                ellipse(users[u].x, users[u].y, 20, 20);
+                ellipse(users[u].x, users[u].y, 60, 60);
             }
         }
     }

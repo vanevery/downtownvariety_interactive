@@ -20,7 +20,7 @@ function setup() {
   g = random(0, 255);
   b = random(0, 255);
 
-  let cnv = createCanvas(windowWidth, windowHeight);
+  let cnv = createCanvas(1280, 720);
   cnv.id('cnv');
   cnv.parent("vidContainer");
 
